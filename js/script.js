@@ -24,8 +24,8 @@ function smoothScrollTo(targetY, duration = 600) {
   requestAnimationFrame(step);
 }
 
-// Attach to the first <img> on the page
-document.querySelector("img").addEventListener("click", function () {
+// Attach to the main image/video on the page
+document.querySelector("#main-img").addEventListener("click", function () {
   const doc = document.documentElement;
   const body = document.body;
   const maxScroll =
