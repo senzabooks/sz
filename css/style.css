@@ -27,13 +27,19 @@ p {
   justify-content: center;
   margin: auto;
   max-width: 600px;
+  position: relative;
 }
 
 #main-img {
-  cursor: pointer;
   width: 70%;
   margin: auto;
   /* box-shadow: -5px 5px 2px 0px #c9c9c9; */
+}
+
+#tap-overlay {
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
 }
 
 #link-container {

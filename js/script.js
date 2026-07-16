@@ -24,12 +24,16 @@ function smoothScrollTo(targetY, duration = 600) {
   requestAnimationFrame(step);
 }
 
-// Attach to the main image/video on the page
-document.querySelector("#main-img").addEventListener("click", function () {
+// Attach to the tap overlay rather than the video itself: iOS Safari
+// gives <video> its own native tap handling (revealing transient
+// controls) which can swallow click events before they reach us.
+const mainVideo = document.querySelector("#main-img");
+
+document.querySelector("#tap-overlay").addEventListener("click", function () {
   // If autoplay was blocked (e.g. Low Power Mode), the video is still
   // paused when tapped. Let that first tap start it instead of scrolling.
-  if (this.tagName === "VIDEO" && this.paused) {
-    this.play().catch(() => {});
+  if (mainVideo.paused) {
+    mainVideo.play().catch(() => {});
     return;
   }
 
