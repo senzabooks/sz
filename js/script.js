@@ -26,6 +26,13 @@ function smoothScrollTo(targetY, duration = 600) {
 
 // Attach to the main image/video on the page
 document.querySelector("#main-img").addEventListener("click", function () {
+  // If autoplay was blocked (e.g. Low Power Mode), the video is still
+  // paused when tapped. Let that first tap start it instead of scrolling.
+  if (this.tagName === "VIDEO" && this.paused) {
+    this.play().catch(() => {});
+    return;
+  }
+
   const doc = document.documentElement;
   const body = document.body;
   const maxScroll =
